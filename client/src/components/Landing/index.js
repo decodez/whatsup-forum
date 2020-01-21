@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import { setCurrentUser } from "../../actions/authActions";
+import { setCurrentUser } from '../../actions/authActions';
 
 class Landing extends Component {
   async componentDidMount() {
@@ -43,7 +43,7 @@ class Landing extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { setCurrentUser })(Landing);
