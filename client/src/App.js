@@ -5,6 +5,9 @@ import store from './store';
 
 import Navbar from './components/Navbar';
 import Landing from './components/Landing';
+import Topics from './components/Topics';
+import Dashboard from './components/Dashboard';
+import TopicForm from './components/TopicForm';
 
 import './App.scss';
 
@@ -17,6 +20,9 @@ class App extends Component {
             <Navbar />
             <div className="App">
               <Route exact path="/" component={Landing} />
+              <Route exact path="/my-topics" component={Dashboard} />
+              <Route exact path="/create" component={TopicForm} />
+              <Route exact path="/all-topics" component={Topics} />
             </div>
           </div>
         </Router>
