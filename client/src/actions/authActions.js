@@ -16,3 +16,14 @@ export const setCurrentUser = () => dispatch => {
       console.log(err.response);
     });
 };
+
+export const logoutUser = () => dispatch => {
+  axios
+    .get('/api/users/logout')
+    .then(res => {
+      res.send('Logout Succesfull');
+    })
+    .catch(err => {
+      console.log(err.response);
+    });
+};

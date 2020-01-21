@@ -1,0 +1,33 @@
+.app-landing {
+  .btn--google-sign-in {
+    width: auto;
+    display: flex;
+    padding: 10px 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    img {
+      margin-right: 10px;
+      width: 50px;
+    }
+  }
+  .btn-social-login-wrapper {
+    display: block;
+    max-width: 300px;
+    a {
+      display: block;
+      margin-bottom: 20px;
+      color: black;
+      text-decoration: none;
+    }
+  }
+  .btn-social-login {
+    display: flex;
+    padding: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      margin-right: 10px;
+    }
+  }
+}

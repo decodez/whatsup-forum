@@ -39,8 +39,39 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/current_user', (req, res) => {
-  console.log(req);
   res.send(req.user);
+});
+
+router.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true,
+  })
+);
+
+router.post('/signup', (req, res) => {
+  // Form validation
+
+  const { name, username, password } = req.body;
+  // ADD VALIDATION
+  User.findOne({ 'local.username': username }, (err, userMatch) => {
+    if (userMatch) {
+      return res.json({
+        error: `Sorry, already a user with the username: ${username}`,
+      });
+    }
+    const newUser = new User({
+      name: name,
+      'local.username': username,
+      'local.password': password,
+    });
+    newUser.save((err, user) => {
+      if (err) return res.json(err);
+      return res.json(user);
+    });
+  });
 });
 
 module.exports = router;
