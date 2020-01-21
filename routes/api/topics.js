@@ -42,12 +42,16 @@ router.post('/create', (req, res) => {
 router.post('/comment/create', (req, res) => {
   var comment = {
     name: req.body.name,
-    text: req.body.text,
+    text: req.user.name,
   };
-  Topic.updateupdate(
-    { _id: req.body.id },
-    { $push: { comments: comment } }
-  ).catch(err => res.status(404).json({ notopicsfound: 'No topics found' }));
+  Topic.findByIdAndUpdate(
+    req.body.id,
+    { $push: { comments: comment } },
+    (err, doc) => {
+      console.log(doc);
+      res.json(doc);
+    }
+  );
 });
 
 module.exports = router;

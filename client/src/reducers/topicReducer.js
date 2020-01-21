@@ -1,4 +1,9 @@
-import { GET_TOPICS, ADD_TOPIC, GET_TOPIC } from '../actions/types';
+import {
+  GET_TOPICS,
+  ADD_TOPIC,
+  GET_TOPIC,
+  ADD_COMMENT,
+} from '../actions/types';
 
 const initialState = {
   topics: [],
@@ -14,13 +19,17 @@ export default function(state = initialState, action) {
         ...state,
         topics: action.payload,
       };
-
     case GET_TOPIC:
       return {
         ...state,
         singleTopic: action.payload,
       };
     case ADD_TOPIC:
+      return {
+        ...state,
+        postSuccess: true,
+      };
+    case ADD_COMMENT:
       return {
         ...state,
         postSuccess: true,
