@@ -1,4 +1,4 @@
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
-export const ADD_POST = 'ADD_POST';
-export const GET_POST = 'GET_POST';
-export const GET_POSTS = 'GET_POSTS';
+export const ADD_TOPIC = 'ADD_TOPIC';
+export const GET_TOPIC = 'GET_TOPIC';
+export const GET_TOPICS = 'GET_TOPICS';

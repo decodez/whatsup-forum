@@ -39,6 +39,34 @@
       url('/assets/fonts/open-sans-v17-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Open Sans';
+}
+
+.app-form {
+  display: block;
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    background-color: #f7f7f7;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+  }
+  textarea {
+    min-height: 100px;
+  }
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
 }
