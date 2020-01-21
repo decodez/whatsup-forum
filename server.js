@@ -5,6 +5,7 @@ const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 
 const users = require('./routes/api/users');
+const topics = require('./routes/api/topics');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -37,7 +38,7 @@ require('./config/passport');
 
 //Use routes from routes folder
 app.use('/api/users', users);
-// app.use("/api/posts", posts);
+app.use('/api/topics', topics);
 
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {
