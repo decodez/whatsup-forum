@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { setCurrentUser, signinUser } from '../../actions/authActions';
@@ -58,6 +58,10 @@ class Landing extends Component {
             <div>
               <h2 className="display-5 mb-4">{user.name}</h2>
               <p> Ask and share anything and everything you wish!</p>
+              <br />
+              <Link className="btn--blue" to={'/all-topics'}>
+                View all topics
+              </Link>
               <br />
             </div>
           ) : (
