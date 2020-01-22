@@ -8,12 +8,27 @@ import { setCurrentUser } from '../../actions/authActions';
 import './styles.scss';
 
 class Topics extends Component {
-  state = {
-    topics: [],
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      topics: [],
+    };
+  }
   async componentDidMount() {
     await this.props.setCurrentUser();
     await this.props.getTopics();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.topic.topics.length === 0) {
+      this.props.getTopics();
+    }
+    if (this.props.topic !== prevProps.topic) {
+      this.setState({
+        topics: this.props.topic.topics,
+      });
+    }
   }
 
   render() {
@@ -21,8 +36,8 @@ class Topics extends Component {
       <div className="topics-container">
         <div className="card-container">
           <h1>All Topics</h1>
-          {this.props.topic.topics.length !== 0 ? (
-            this.props.topic.topics.map(item => (
+          {this.state.topics.length !== 0 ? (
+            this.state.topics.map(item => (
               <React.Fragment key={item._id}>
                 <div className="card">
                   <Link to={`/topics/${item._id}`}>

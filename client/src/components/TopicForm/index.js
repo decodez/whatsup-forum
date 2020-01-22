@@ -23,9 +23,22 @@ class TopicForm extends Component {
   async componentDidMount() {
     await this.props.setCurrentUser();
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.topic !== prevProps.topic) {
+      this.setState({
+        postSuccess: this.props.topic.postSuccess,
+      });
+      setTimeout(() => {
+        this.setState({
+          postSuccess: false,
+        });
+      }, 1500);
+    }
+  }
+
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
 
     if (this.state.title === '' || this.state.description === '') {
       this.setState({ error: 'Please enter all fields' });
@@ -40,9 +53,7 @@ class TopicForm extends Component {
       };
 
       this.props.addTopic(newTopic);
-      this.setState({ text: '', title: '' });
-
-      console.log(this.props);
+      this.setState({ description: '', title: '' });
     }
   }
 
@@ -53,23 +64,24 @@ class TopicForm extends Component {
   render() {
     return (
       <div className="topic-form">
-        <h1>Create New Topic</h1>
-
         {this.state.error && (
-          <div className="alert alert-danger" role="alert">
+          <div className="alert alert--error" role="alert">
             {this.state.error}
           </div>
         )}
         {this.state.postSuccess && (
-          <div className="alert alert-success" role="alert">
+          <div className="alert alert--success" role="alert">
             Posted Successfully
           </div>
         )}
+        <h1>Create New Topic</h1>
+
         <form className="app-form" onSubmit={this.onSubmit}>
           <label>Title</label>
           <input
             placeholder="Title of your topic"
             onChange={this.onChange}
+            value={this.state.title}
             type="text"
             name="title"
           />
@@ -77,10 +89,11 @@ class TopicForm extends Component {
           <textarea
             placeholder="Description of your topic"
             onChange={this.onChange}
+            value={this.state.description}
             type="text"
             name="description"
           />
-          <button className="publish-btn" type="submit">
+          <button className="publish-btn btn--blue" type="submit">
             Publish
           </button>
         </form>

@@ -15,6 +15,15 @@ router.get('/all', (req, res) => {
     .catch(err => res.status(404).json({ nopostsfound: 'No topics found' }));
 });
 
+router.get('/my-topics', (req, res) => {
+  Topic.find({ user: req.user.id })
+    .sort({ date: -1 })
+    .then(topics => {
+      res.json(topics);
+    })
+    .catch(err => res.status(404).json({ nopostsfound: 'No topics found' }));
+});
+
 router.post('/single', (req, res) => {
   Topic.findById(req.body.id)
     .then(topic => {

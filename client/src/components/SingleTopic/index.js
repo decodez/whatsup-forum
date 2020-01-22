@@ -13,7 +13,6 @@ class SingleTopic extends Component {
     this.state = {
       text: '',
       error: '',
-      postSuccess: false,
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -25,9 +24,13 @@ class SingleTopic extends Component {
     await this.props.getSingleTopic({ id: params.id });
   }
 
+  async componentDidUpdate() {
+    const { params } = this.props.match;
+    await this.props.getSingleTopic({ id: params.id });
+  }
+
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
 
     if (this.state.description === '') {
       this.setState({ error: 'Please enter all fields' });
@@ -43,8 +46,6 @@ class SingleTopic extends Component {
 
       this.props.addComment(newComment);
       this.setState({ text: '' });
-
-      console.log(this.props);
     }
   }
 
@@ -58,29 +59,34 @@ class SingleTopic extends Component {
         <div className="topic">
           {this.props.topic.singleTopic !== null ? (
             <React.Fragment>
-              <h1 className="topic-title">
-                {this.props.topic.singleTopic.title}
-              </h1>
-              <p className="topic-descrption">
-                {this.props.topic.singleTopic.description}
-              </p>
-              <div className="topic-info">
-                <span className="username">
-                  {this.props.topic.singleTopic.name} |
-                </span>
-                <br />
-                <i className="date">
-                  {this.props.topic.singleTopic.date.split('T')[0]}
-                </i>
+              <div className="topic-header">
+                <h1 className="topic-title">
+                  {this.props.topic.singleTopic.title}
+                </h1>
+                <p className="topic-descrption">
+                  {this.props.topic.singleTopic.description}
+                </p>
+                <div className="topic-info">
+                  <span className="username">
+                    {this.props.topic.singleTopic.name} |
+                  </span>
+                  <i className="date">
+                    {this.props.topic.singleTopic.date.split('T')[0]}
+                  </i>
+                </div>
               </div>
               {this.props.topic.singleTopic.comments.length !== 0 ? (
                 this.props.topic.singleTopic.comments.map(item => (
                   <React.Fragment key={item._id}>
                     <div className="comment-item">
-                      <p>{item.text}</p>
-                      <p>{item.user}</p>
+                      <p className="comment-item__user">
+                        {item.user} |
+                        <span>
+                          {this.props.topic.singleTopic.date.split('T')[0]}
+                        </span>
+                      </p>
+                      <p className="comment-item__text">{item.text}</p>
                     </div>
-                    <br />
                   </React.Fragment>
                 ))
               ) : (
@@ -92,19 +98,15 @@ class SingleTopic extends Component {
                     {this.state.error}
                   </div>
                 )}
-                {this.state.postSuccess && (
-                  <div className="alert alert-success" role="alert">
-                    Posted Successfully
-                  </div>
-                )}
                 <form className="app-form" onSubmit={this.onSubmit}>
                   <textarea
                     placeholder="Leave a comment"
                     onChange={this.onChange}
+                    value={this.state.text}
                     type="text"
                     name="text"
                   />
-                  <button className="btn publish-btn" type="submit">
+                  <button className="btn--blue" type="submit">
                     Post Comment
                   </button>
                 </form>

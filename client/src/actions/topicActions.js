@@ -1,6 +1,12 @@
 import axios from 'axios';
 
-import { ADD_TOPIC, GET_TOPICS, GET_TOPIC, ADD_COMMENT } from './types';
+import {
+  ADD_TOPIC,
+  GET_TOPICS,
+  GET_MY_TOPICS,
+  GET_TOPIC,
+  ADD_COMMENT,
+} from './types';
 
 // create topic
 export const addTopic = topicData => dispatch => {
@@ -37,6 +43,24 @@ export const getTopics = () => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_TOPICS,
+        payload: null,
+      })
+    );
+};
+
+// Get My Topics
+export const getMyTopics = () => dispatch => {
+  axios
+    .get('/api/topics/my-topics')
+    .then(res => {
+      dispatch({
+        type: GET_MY_TOPICS,
+        payload: res.data,
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_MY_TOPICS,
         payload: null,
       })
     );
