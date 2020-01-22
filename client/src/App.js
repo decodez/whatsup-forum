@@ -9,6 +9,7 @@ import Topics from './components/Topics';
 import Dashboard from './components/Dashboard';
 import TopicForm from './components/TopicForm';
 import SingleTopic from './components/SingleTopic';
+import Signup from './components/Signup';
 
 import './App.scss';
 
@@ -25,6 +26,7 @@ class App extends Component {
               <Route exact path="/create" component={TopicForm} />
               <Route exact path="/all-topics" component={Topics} />
               <Route exact path="/topics/:id" component={SingleTopic} />
+              <Route exact path="/signup" component={Signup} />
             </div>
           </div>
         </Router>

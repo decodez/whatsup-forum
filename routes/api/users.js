@@ -1,6 +1,5 @@
 const passport = require('passport');
 const express = require('express');
-
 const router = express.Router();
 
 const User = require('../../models/User');
@@ -43,11 +42,10 @@ router.get('/current_user', (req, res) => {
 });
 
 router.post(
-  '/login',
+  '/signin',
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true,
+    failureRedirect: '/',
   })
 );
 

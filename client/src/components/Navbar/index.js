@@ -35,11 +35,13 @@ class Navbar extends Component {
     );
 
     const guestLinks = (
-      <li className="nav-item">
-        <a className="btn--signup" href="/api/users/logout">
-          SignUp
-        </a>
-      </li>
+      <ul className="nav-links">
+        <li className="nav-item">
+          <Link className="nav-link btn--blue" to="/signup">
+            Sign Up
+          </Link>
+        </li>
+      </ul>
     );
 
     return (

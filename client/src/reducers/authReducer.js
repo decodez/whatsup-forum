@@ -1,7 +1,8 @@
-import { SET_CURRENT_USER } from '../actions/types';
+import { SET_CURRENT_USER, REGISTER_USER } from '../actions/types';
 
 const initialState = {
   isAuthenticated: false,
+  registerSuccess: false,
   user: {},
 };
 
@@ -12,6 +13,11 @@ export default function(state = initialState, action) {
         ...state,
         isAuthenticated: !!action.payload,
         user: action.payload,
+      };
+    case REGISTER_USER:
+      return {
+        ...state,
+        registerSuccess: true,
       };
     default:
       return state;

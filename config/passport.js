@@ -57,7 +57,6 @@ passport.use(
     },
     function(accessToken, refreshToken, profile, done) {
       User.findOne({ 'facebook.id': profile.id }).then(existingUser => {
-        console.log(profile);
         if (existingUser) {
           done(null, existingUser);
         } else {
@@ -86,7 +85,7 @@ passport.use(
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!user.validPassword(password)) {
+      if (user.local.password !== password) {
         return done(null, false, { message: 'Incorrect password.' });
       }
       return done(null, user);

@@ -27,3 +27,24 @@ export const logoutUser = () => dispatch => {
       console.log(err.response);
     });
 };
+
+export const createUser = userData => dispatch => {
+  axios
+    .post('/api/users/signup', userData)
+    .then(res => {
+      console.log(res.data);
+      dispatch({
+        type: SET_CURRENT_USER,
+        payload: res.data,
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const signinUser = userData => dispatch => {
+  axios.post('/api/users/signin', userData).catch(err => {
+    console.log(err);
+  });
+};
