@@ -76,8 +76,9 @@ class SingleTopic extends Component {
               {this.props.topic.singleTopic.comments.length !== 0 ? (
                 this.props.topic.singleTopic.comments.map(item => (
                   <React.Fragment key={item._id}>
-                    <div class="comment-item">
+                    <div className="comment-item">
                       <p>{item.text}</p>
+                      <p>{item.user}</p>
                     </div>
                     <br />
                   </React.Fragment>

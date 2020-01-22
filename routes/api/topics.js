@@ -41,14 +41,13 @@ router.post('/create', (req, res) => {
 
 router.post('/comment/create', (req, res) => {
   var comment = {
-    name: req.body.name,
-    text: req.user.name,
+    user: req.user.name,
+    text: req.body.text,
   };
   Topic.findByIdAndUpdate(
     req.body.id,
     { $push: { comments: comment } },
     (err, doc) => {
-      console.log(doc);
       res.json(doc);
     }
   );
