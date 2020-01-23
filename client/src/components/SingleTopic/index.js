@@ -89,7 +89,7 @@ class SingleTopic extends Component {
                   </React.Fragment>
                 ))
               ) : (
-                <div>No comments</div>
+                <div></div>
               )}
               <div className="comment-form">
                 {this.state.error && (

@@ -72,7 +72,7 @@ class Signup extends Component {
               Posted Successfully
             </div>
           )}
-          <h1>Create New Topic</h1>
+          <h1>Create new account</h1>
 
           <form className="app-form" onSubmit={this.onSubmit}>
             <label>Full Name</label>

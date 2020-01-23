@@ -1,7 +1,9 @@
 .single-topic-wrapper {
   max-width: 1150px;
   padding-top: 130px;
+  margin: 0 auto;
   .topic {
+    position: relative;
     max-width: 900px;
     margin: 0 auto;
     &-header {
